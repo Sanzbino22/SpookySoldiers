@@ -4,44 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SpookySoldiers AR</title>
-  
-  <!-- 1. Load Google's model-viewer script -->
+
+  <!-- Google <model-viewer> library -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+    body {
       width: 100vw;
       height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #1a1a1a;
-      font-family: sans-serif;
+      background-color: #121212;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow: hidden;
     }
     model-viewer {
       width: 100%;
       height: 100%;
+      --poster-color: transparent;
     }
+    /* Custom AR Button overlay */
     .ar-button {
-      background-color: #ffffff;
-      border-radius: 20px;
-      border: none;
-      color: #1a1a1a;
-      padding: 12px 24px;
-      font-weight: bold;
       position: absolute;
-      bottom: 30px;
+      bottom: 40px;
       left: 50%;
       transform: translateX(-50%);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      background-color: #ffffff;
+      color: #000000;
+      border: none;
+      border-radius: 30px;
+      padding: 14px 28px;
+      font-size: 16px;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 10;
+    }
+    .ar-button:active {
+      transform: translateX(-50%) scale(0.98);
     }
   </style>
 </head>
 <body>
 
-  <!-- 2. Configure model-viewer with your GLB file -->
   <model-viewer 
     src="Spookyfamily-v1.glb" 
     alt="Spooky Soldiers 3D Model"
@@ -50,10 +61,11 @@
     camera-controls 
     touch-action="pan-y"
     shadow-intensity="1"
+    shadow-softness="1"
     auto-rotate>
     
     <button slot="ar-button" class="ar-button">
-      👋 View in AR
+      📱 View in your space
     </button>
 
   </model-viewer>
